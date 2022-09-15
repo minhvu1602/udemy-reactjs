@@ -1,0 +1,17 @@
+.form-container {
+  background-color: rgba(51, 45, 45, 0.473);
+  padding: 30px;
+  margin-bottom: 30px;
+  .input-wrapper {
+    margin-bottom: 16px;
+  }
+  .label {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .button-addUser {
+    // padding: 10px;
+    background-color: white;
+    margin-top: 10px;
+  }
+}
