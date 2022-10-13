@@ -1,6 +1,6 @@
 import "../ListView/_List.scss";
 
-const List = (props) => {
+const List = ({ users, onDelete, onEdit }) => {
   return (
     <div>
       <table>
@@ -8,23 +8,25 @@ const List = (props) => {
           <tr>
             <th className="padding-row">Name</th>
             <th className="padding-row">Account</th>
-            <th>Address</th>
           </tr>
-        </thead>
-        <tbody id="demo"></tbody>
-      </table>
-      {props.items.map((item) => (
-        <table key={item.nameUsers}>
-          <thead>
-            <tr>
-              <th className="padding-row">{item.nameUsers}</th>
-              <th className="padding-row">{item.accountUsers}</th>
-              <th>{item.addressUsers}</th>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td className="padding-row">{user.name}</td>
+              <td className="padding-row">{user.account}</td>
+              <td>
+                <span className="button" onClick={() => onDelete(user.id)}>
+                  Delete
+                </span>
+              </td>
+              <td style={{ paddingLeft: 20 }}>
+                <div className="button" onClick={() => onEdit(user.id)}>
+                  Edit
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody id="demo"></tbody>
-        </table>
-      ))}
+          ))}
+        </thead>
+      </table>
     </div>
   );
 };
