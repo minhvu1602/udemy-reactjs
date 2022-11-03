@@ -1,59 +1,35 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import List from "../src/components/ListView/List";
-import React, { useState, useEffect } from "react";
-import AddUser from "./components/AddUser";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import ProductList from "./components/ProductList";
+import CartShopping from "./components/CartShopping";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getListPost } from "./redux/action/productAction";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const getUsers = JSON.parse(localStorage.getItem("userAdded"));
+  const dispatch = useDispatch();
+  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    if (getUsers == null) {
-      setUsers([]);
-    } else {
-      setUsers(getUsers);
+    // Update the document title using the browser API
+    function fetchData() {
+      dispatch(getListPost());
     }
+    fetchData();
   }, []);
 
-  const addUser = (user) => {
-    const id = Math.random().toString();
-    const newUser = { id, ...user };
-    setUsers([...users, newUser]);
-    localStorage.setItem("userAdded", JSON.stringify([...users, newUser]));
-  };
-
-  const deleteUser = (id) => {
-    const deleteUser = users.filter((user) => user.id !== id);
-    setUsers(deleteUser);
-    localStorage.setItem("userAdded", JSON.stringify(deleteUser));
-  };
-
-  const editUser = (id) => {
-    const name = prompt("Name");
-    const account = prompt("Account");
-    let data = JSON.parse(localStorage.getItem("userAdded"));
-    const myData = data.map((x) => {
-      if (x.id === id && name && account) {
-        return {
-          ...x,
-          name: name,
-          account: account,
-        };
-      }
-      return x;
-    });
-    localStorage.setItem("userAdded", JSON.stringify(myData));
-    window.location.reload();
-  };
-
   return (
-    <div className="App-header">
-      <AddUser onSave={addUser} />
-      {users.length > 0 ? (
-        <List users={users} onDelete={deleteUser} onEdit={editUser} />
-      ) : (
-        "No Task Found!"
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/productList" element={<ProductList />} />
+          <Route path="/cart" element={<CartShopping />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

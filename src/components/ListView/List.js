@@ -2,7 +2,7 @@ import "../ListView/_List.scss";
 
 const List = ({ users, onDelete, onEdit }) => {
   return (
-    <div>
+    <div className="container">
       <table>
         <thead>
           <tr>
