@@ -4,7 +4,6 @@ export const addCart = (payload) => ({
 });
 
 export const removeCart = () => {
-  console.log("remove all");
   return {
     type: "REMOVE_TO_CART",
   };

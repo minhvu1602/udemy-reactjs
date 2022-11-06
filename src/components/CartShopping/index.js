@@ -19,10 +19,7 @@ import {
   addQuantity,
 } from "../../redux/action/cartAction";
 import "./Cart.scss";
-// import { getOrder, deleteOrder } from "../../services/order/index";
 import NewOrder from "../FormOrder/index";
-// import { useHistory } from "react-router";
-// import FormEditOrder from "../components/FormEdidOrder";
 
 const useStyles = makeStyles((theme) => ({
   heroButtons: {
@@ -40,16 +37,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Mycart = () => {
   const addedProducts = useSelector((state) => state.itemsInCart.itemsInCart);
-  //   const userLogon = useSelector((state) => state.user.dataUser);
   const dispatch = useDispatch();
-  //   const [products, setProducts] = useState([]);
-  //   const [newOrder, setNewOrder] = useState();
-  //   const [showEditFormOrder, setShowEditFormOder] = useState(false);
   const [showNewFormOrder, setShowNewFormOrder] = useState(false);
-  //   const [idOrder, setIdOrder] = useState();
-  //   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState();
-  //   const history = useHistory();
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
@@ -58,6 +48,7 @@ const Mycart = () => {
       await setTotal(calculatePrice());
     };
     countTotal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const classes = useStyles();
@@ -76,7 +67,6 @@ const Mycart = () => {
   const addedQuantityFromArr = (product) => {
     const arr = [...addedProducts];
     const found = arr.find((f) => f.id === product.id);
-    console.log("found", found);
     if (found) {
       found.quantityorder++;
     }
@@ -96,6 +86,7 @@ const Mycart = () => {
     if (addedProducts.length) {
       const arr = [];
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      // eslint-disable-next-line
       addedProducts.map((data) => {
         arr.push(data.price * data.quantityorder);
       });
@@ -103,39 +94,12 @@ const Mycart = () => {
     }
   };
 
-  //   useEffect(async () => {
-  //     // await newCat('minhtes00099', 125);
-  //     //  await deleteCat('60812e7e2d92c3c223050041');
-  //     //  await updateCat('609165c2dc8d3fa324c4f64e', 'minhupdate97', 112);
-  //     // Update the document title using the browser API
-  //     loadData();
-  //   }, []);
-
-  //   const setShowFormEditOrderById = (status, id) => {
-  //     setShowEditFormOder(status);
-  //     setIdOrder(id);
-  //   };
-
   const setNewFormOrder = (status) => {
     setShowNewFormOrder(status);
   };
 
-  //   const loadData = async () => {
-  //     const newOrder = await getOrder();
-  //     setNewOrder(newOrder);
-  //     setLoading(false);
-  //   };
-  //   const deleteItem = async (id) => {
-  //     debugger;
-  //     setLoading(true);
-  //     await deleteOrder(id);
-  //     await loadData();
-  //     setLoading(false);
-  //   };
-
   return (
     <div className="cart">
-      {/* {showEditFormOrder ? <FormEditOrder id={idOrder} setShowFormEditOrderById={setShowFormEditOrderById} loadData={loadData} /> : null}  */}
       {showNewFormOrder ? (
         <NewOrder
           setNewFormOrder={setNewFormOrder}
@@ -146,8 +110,8 @@ const Mycart = () => {
       <Container className="cart-wrapper" maxWidth="xl">
         {addedProducts && addedProducts.length > 0 ? (
           <div>
-            <span className="h4 fw600">Bạn đã order:</span>
-            <Grid container spacing={2} className="ptbx3">
+            <span>Bạn đã order:</span>
+            <Grid container spacing={2}>
               {addedProducts &&
                 addedProducts.map((card) => (
                   <Grid item key={card.id} md={8} className="item-cart">
@@ -200,10 +164,10 @@ const Mycart = () => {
                 ))}
               <Grid item md={4} className="total">
                 <Card className="total-price">
-                  <span className="h5 fw600 plx2">Hoá đơn</span>
-                  <Grid container spacing={1} className="ptbx3">
+                  <span>Hoá đơn</span>
+                  <Grid container spacing={1}>
                     <Grid item md={3}>
-                      <Typography className="plx2">Tổng tiền:</Typography>
+                      <Typography>Tổng tiền:</Typography>
                     </Grid>
                     <Grid item md={2}>
                       <span>{calculatePrice()}$</span>

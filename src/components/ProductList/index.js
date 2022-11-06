@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -12,7 +12,6 @@ import { addCart } from "../../redux/action/cartAction";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import "./_ProductList.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,13 +39,7 @@ const ProductList = () => {
   const dipatch = useDispatch();
   const products = useSelector((state) => state.dataProduct.dataProduct);
   const itemsInCart = useSelector((state) => state.itemsInCart.itemsInCart);
-  const [pathname, setPathname] = useState(null);
-  let location = useLocation();
 
-  useEffect(() => {
-    const a = products;
-    setPathname(location.pathname);
-  }, [location]);
   const addProducts = (product) => {
     const arr = [...itemsInCart];
     const found = arr.find((f) => f.id === product.id);
@@ -62,7 +55,7 @@ const ProductList = () => {
   return (
     <div className="lovelydog">
       <Container className="lovelydog-wrapper" maxWidth="xl">
-        {products && products.length == 0 && (
+        {products && products.length === 0 && (
           <div className="loading">
             <CircularProgress /> <p>Đang tải dữ liệu</p>
           </div>

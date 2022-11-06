@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import ClearIcon from "@mui/icons-material/Clear";
-import { newOrder } from "../../services/order/index";
 import CircularProgress from "@mui/material/CircularProgress";
 import { removeCart } from "../../redux/action/cartAction";
 import { useDispatch } from "react-redux";
@@ -17,11 +16,8 @@ const FormNewOrder = ({ setNewFormOrder, total, items }) => {
   const [addOrder, setAddOrder] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [price, setPrice] = useState("");
-  const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(true);
-  // const userLogon = useSelector((state) => state.user.dataUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,30 +36,29 @@ const FormNewOrder = ({ setNewFormOrder, total, items }) => {
     setNewFormOrder(false, null);
   };
 
-  // const sendOrder = async () => {
-  //   let isValid = false;
-  //   items.forEach(async function (item) {
-  //     if (item.quantity < item.quantityorder) {
-  //       alert(
-  //         `Số lượng ${item.name} không đủ trong kho:\nSố lượng trong kho là: ${item.quantity} \nSố lượng đặt hàng là: ${item.quantityorder}`
-  //       );
-  //       isValid = true;
-  //       return;
-  //     }
-  //   });
-  //   if (isValid) {
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   dispatch(postOder(name, address, phone, total, items));
-  //   // await loadData();
-  //   // dispatch(removeCart());
-  //   await closeForm();
-  //   alert(
-  //     "Đặt hàng thành công, vui lòng chờ admin duyệt đơn và phản hồi lại tới bạn."
-  //   );
-  //   setLoading(false);
-  // };
+  const sendOrder = async () => {
+    let isValid = false;
+    items.forEach(async function (item) {
+      if (item.quantity < item.quantityorder) {
+        alert(
+          `Số lượng ${item.name} không đủ trong kho:\nSố lượng trong kho là: ${item.quantity} \nSố lượng đặt hàng là: ${item.quantityorder}`
+        );
+        isValid = true;
+        return;
+      }
+    });
+    if (isValid) {
+      return;
+    }
+    setLoading(true);
+    await dispatch(postOder({ name, address, total, phone, items }));
+    dispatch(removeCart());
+    await closeForm();
+    alert(
+      "Đặt hàng thành công, vui lòng chờ admin duyệt đơn và phản hồi lại tới bạn."
+    );
+    setLoading(false);
+  };
 
   return (
     <div className="form-newOrder">
@@ -134,11 +129,15 @@ const FormNewOrder = ({ setNewFormOrder, total, items }) => {
                   />
                 </Grid>
               </Grid>
-              {/* <div className="button-newOrder">
-                <Button variant="outlined" type="submit" onClick={sendOrder()}>
+              <div className="button-newOrder">
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  onClick={() => sendOrder()}
+                >
                   Đặt hàng
                 </Button>
-              </div> */}
+              </div>
             </Card>
           </Container>
         </div>

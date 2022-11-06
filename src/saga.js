@@ -1,8 +1,5 @@
-import { call, put, takeEvery, all } from "redux-saga/effects";
-import { getproducts } from "./services/product/index";
-import { newOrder } from "./services/order";
+import { call, put, takeEvery, all, takeLatest } from "redux-saga/effects";
 import { getListPostSuccess } from "./redux/action/productAction";
-import { postOrderSuccess } from "./redux/action/order";
 import {
   addCart,
   addQuantity,
@@ -10,10 +7,14 @@ import {
   removeItem,
   subQuantity,
 } from "./redux/action/cartAction";
+import axios from "axios";
 
 function* getListPostSaga() {
   try {
-    const data = yield call(getproducts);
+    const data = yield call(
+      axios,
+      "http://606989d5e1c2a10017544a2f.mockapi.io/api/products"
+    );
     yield put(getListPostSuccess(data));
   } catch (error) {
     //handle error
@@ -24,18 +25,23 @@ function* postsSaga() {
   yield takeEvery("GET_LIST_POST", getListPostSaga);
 }
 
-function* postOrder(action) {
-  const data = action.product;
-  try {
-    yield call(newOrder, data);
-    yield put(postOrderSuccess(data));
-  } catch (error) {
-    console.log(error);
-  }
+export function* postOrderSaga() {
+  yield takeLatest("POST_ORDER", postOrderToDb);
 }
 
-function* postOrderSaga() {
-  yield takeEvery("POST_ORDER", postOrder);
+function* postOrderToDb({ payload }) {
+  yield call(addOrder, payload);
+  yield put({ type: "POST_ORDER_SUCCESS", payload });
+}
+
+async function addOrder({ name, address, total, phone, items }) {
+  await axios.post("http://606989d5e1c2a10017544a2f.mockapi.io/api/order", {
+    name,
+    address,
+    total,
+    phone,
+    items,
+  });
 }
 
 function* addItemToCart(action) {

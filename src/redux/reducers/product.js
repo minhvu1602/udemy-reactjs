@@ -7,14 +7,12 @@ const productaction = (state = initialState, action) => {
     case "GET_LIST_POST":
       return {
         ...state,
-        load: true,
       };
     case "GET_LIST_POST_SUCCESS":
       const { data } = action.payload;
       return {
         ...state,
         dataProduct: data,
-        load: false,
       };
     default:
       return state;
