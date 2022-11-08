@@ -20,6 +20,7 @@ import {
 } from "../../redux/action/cartAction";
 import "./Cart.scss";
 import NewOrder from "../FormOrder/index";
+import ImageHOC from "../ImageHOC";
 
 const useStyles = makeStyles((theme) => ({
   heroButtons: {
@@ -199,4 +200,4 @@ const Mycart = () => {
   );
 };
 
-export default Mycart;
+export default ImageHOC(Mycart);

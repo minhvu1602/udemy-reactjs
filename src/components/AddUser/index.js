@@ -14,6 +14,7 @@ const AddUser = ({ onSave }) => {
     setName("");
     setAccount("");
   };
+
   return (
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">

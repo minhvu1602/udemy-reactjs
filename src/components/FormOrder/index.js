@@ -10,6 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { removeCart } from "../../redux/action/cartAction";
 import { useDispatch } from "react-redux";
 import { postOder } from "../../redux/action/order";
+import ImageHOC from "../ImageHOC";
 import "./_FormNewOrder.scss";
 
 const FormNewOrder = ({ setNewFormOrder, total, items }) => {
@@ -148,4 +149,4 @@ const FormNewOrder = ({ setNewFormOrder, total, items }) => {
   );
 };
 
-export default FormNewOrder;
+export default ImageHOC(FormNewOrder);

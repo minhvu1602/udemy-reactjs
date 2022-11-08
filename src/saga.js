@@ -66,7 +66,7 @@ function* addQuantityCart(action) {
   }
 }
 
-function* addQuantityCartSaga(action) {
+function* addQuantityCartSaga() {
   yield takeEvery("ADD_QUANTITY", addQuantityCart);
 }
 

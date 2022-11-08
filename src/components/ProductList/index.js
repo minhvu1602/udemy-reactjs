@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
 import "./_ProductList.scss";
+import imageHOC from "../ImageHOC";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,11 +67,13 @@ const ProductList = () => {
               <Grid item key={card.id} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <Link to={`/productDetails?id=${card._id}`}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={card.avatar}
-                      title="Image title"
-                    />
+                    <div>
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image={card.avatar}
+                        title="Image title"
+                      />
+                    </div>
                   </Link>
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -116,4 +119,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default imageHOC(ProductList);
