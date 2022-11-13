@@ -2,10 +2,13 @@ import Container from "@material-ui/core/Container";
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Badge from "@material-ui/core/Badge";
 import "./_Header.scss";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [pathname, setPathname] = useState(null);
+  const addedProducts = useSelector((state) => state.itemsInCart.itemsInCart);
   let location = useLocation();
   useEffect(() => {
     setPathname(location.pathname);
@@ -30,7 +33,13 @@ const Header = () => {
           </span>
           <span className="icon-cart">
             <Link className={pathname === "/cart" ? "active" : ""} to="/cart">
-              <ShoppingCartIcon />
+              <Badge
+                badgeContent={addedProducts.length}
+                color="primary"
+                overlap="rectangular"
+              >
+                <ShoppingCartIcon />
+              </Badge>
             </Link>
           </span>
         </div>
