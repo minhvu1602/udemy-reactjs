@@ -1,7 +1,7 @@
 import List from "../ListView/List";
 import React, { useState, useEffect } from "react";
 import AddUser from "../AddUser/index";
-import "../Home/Home.scss";
+import "../Home/_Home.scss";
 
 const Home = () => {
   const [users, setUsers] = useState([]);

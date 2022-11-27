@@ -42,6 +42,11 @@ const Header = () => {
               </Badge>
             </Link>
           </span>
+          <span className="title-header">
+            <Link className={pathname === "/order" ? "active" : ""} to="/order">
+              Quản lý đơn hàng
+            </Link>
+          </span>
         </div>
       </Container>
     </div>

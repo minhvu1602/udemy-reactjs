@@ -3,17 +3,36 @@ const initialState = {
 };
 
 const order = (state = initialState, action) => {
+  let newListOrder;
   switch (action.type) {
     case "POST_ORDER":
       return {
         ...state,
       };
     case "POST_ORDER_SUCCESS":
-      const { data } = action.payload;
       return {
         ...state,
-        listOrder: data,
+        listOrder: action.payload.data,
       };
+    case "GET_ORDER":
+      return {
+        ...state,
+      };
+    case "GET_ORDER_SUCCESS":
+      console.log("state", state.listOrder);
+      return {
+        ...state,
+        listOrder: action.payload.data,
+      };
+    case "REMOVE_ORDER_SUCCESS": {
+      newListOrder = state.listOrder.filter(
+        (entry) => entry.id !== action.payload
+      );
+      return {
+        ...state,
+        listOrder: newListOrder,
+      };
+    }
     default:
       return state;
   }
