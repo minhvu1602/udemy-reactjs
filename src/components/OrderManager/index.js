@@ -4,8 +4,6 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-// import Title from "./Title";
-// import Button from "@material-ui/core/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -22,13 +20,9 @@ import Button from "@mui/material/Button";
 import { getListOrder } from "../../redux/action/order";
 
 const FomrOrder = () => {
-  const [newOrder, setNewOrder] = useState();
-  const [showEditFormOrder, setShowEditFormOder] = useState(false);
-  const [idOrder, setIdOrder] = useState();
   const [loading, setLoading] = useState(false);
   const [idDelete, setIdDelete] = useState();
   const listOrder = useSelector((state) => state.listOrder.listOrder);
-  console.log("listOrder", listOrder);
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -60,14 +54,7 @@ const FomrOrder = () => {
 
   useEffect(() => {
     loadData();
-    console.log("dispatch");
   }, []);
-
-  console.log("res", loading);
-  //   const setShowFormEditOrderById = (status, id) => {
-  //     setShowEditFormOder(status);
-  //     setIdOrder(id);
-  //   };
 
   return (
     <div>
@@ -115,21 +102,17 @@ const FomrOrder = () => {
           onClose={handleClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <DialogTitle id="responsive-dialog-title">
-            {"Use Google's location service?"}
-          </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Let Google help apps determine location. This means sending
-              anonymous location data to Google, even when no apps are running.
+              Bạn có chắc chắn muốn xoá đơn hàng này!
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              Disagree
+            <Button autoFocus onClick={deleteOrder}>
+              Đồng ý
             </Button>
-            <Button onClick={deleteOrder} autoFocus>
-              Agree
+            <Button onClick={handleClose} autoFocus>
+              Huỷ
             </Button>
           </DialogActions>
         </Dialog>

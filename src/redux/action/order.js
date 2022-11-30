@@ -12,7 +12,6 @@ export const getListOrder = () => {
 };
 
 export const getListOrderSuccess = (payload) => {
-  console.log("actionsss", payload);
   return {
     type: "GET_ORDER_SUCCESS",
     payload,
@@ -20,7 +19,6 @@ export const getListOrderSuccess = (payload) => {
 };
 
 export const removeOrder = (payload) => {
-  console.log("action", payload);
   return {
     type: "REMOVE_ORDER",
     payload,

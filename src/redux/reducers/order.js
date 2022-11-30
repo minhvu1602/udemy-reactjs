@@ -19,7 +19,6 @@ const order = (state = initialState, action) => {
         ...state,
       };
     case "GET_ORDER_SUCCESS":
-      console.log("state", state.listOrder);
       return {
         ...state,
         listOrder: action.payload.data,
