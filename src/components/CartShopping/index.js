@@ -18,7 +18,6 @@ import {
   removeItem,
   addQuantity,
 } from "../../redux/action/cartAction";
-import "./_Cart.scss";
 import NewOrder from "../FormOrder/index";
 import ImageHOC from "../ImageHOC";
 

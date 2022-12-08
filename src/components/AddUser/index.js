@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./_AddUser.scss";
 
 const AddUser = ({ onSave }) => {
   const [name, setName] = useState("");

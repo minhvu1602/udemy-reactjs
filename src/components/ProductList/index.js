@@ -12,7 +12,6 @@ import { addCart } from "../../redux/action/cartAction";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
-import "./_ProductList.scss";
 import imageHOC from "../ImageHOC";
 
 const useStyles = makeStyles((theme) => ({

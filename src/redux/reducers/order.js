@@ -32,6 +32,24 @@ const order = (state = initialState, action) => {
         listOrder: newListOrder,
       };
     }
+    case "UPDATE_ORDER_SUCCESS": {
+      newListOrder = [...state];
+      const index = newListOrder.findIndex(
+        (entry) => entry.id === action.payload.id
+      );
+      newListOrder[index] = {
+        ...newListOrder[index],
+        ...{
+          name: action.payload.name,
+          address: action.payload.address,
+          phone: action.payload.phone,
+        },
+      };
+      return {
+        ...state,
+        listOrder: newListOrder,
+      };
+    }
     default:
       return state;
   }

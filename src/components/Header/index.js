@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
-import "./_Header.scss";
 import { useSelector } from "react-redux";
 
 const Header = () => {

@@ -24,3 +24,10 @@ export const removeOrder = (payload) => {
     payload,
   };
 };
+
+export const updateOrder = (payload) => {
+  return {
+    type: "UPDATE_ORDER",
+    payload,
+  };
+};

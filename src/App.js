@@ -7,8 +7,8 @@ import OrderManager from "./components/OrderManager";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getListPost } from "./redux/action/productAction";
-import { getListOrder } from "./redux/action/order";
 import ImageBG from "./components/ImageBg";
+import "./assets/styles/_all.scss";
 
 function App() {
   const dispatch = useDispatch();

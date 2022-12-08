@@ -13,7 +13,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -54,6 +53,7 @@ const FomrOrder = () => {
 
   useEffect(() => {
     loadData();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -68,7 +68,6 @@ const FomrOrder = () => {
               <TableCell>SDT</TableCell>
               <TableCell>Đơn giá</TableCell>
               <TableCell>Hành động</TableCell>
-              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -79,14 +78,6 @@ const FomrOrder = () => {
                   <TableCell>{data.address}</TableCell>
                   <TableCell>{data.phone}</TableCell>
                   <TableCell>{data.total}</TableCell>
-                  {/* <TableCell align="right">
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowFormEditOrderById(true, data._id)}
-                    >
-                      Sửa
-                    </Button>
-                  </TableCell> */}
                   <TableCell>
                     <DeleteIcon onClick={() => handleClickOpen(data.id)} />
                   </TableCell>

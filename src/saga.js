@@ -69,6 +69,32 @@ async function removeOrder(id) {
   );
 }
 
+export function* updateOrderSaga() {
+  yield takeLatest("UPDATE_ORDER", updateOrderFrDb);
+}
+
+function* updateOrderFrDb({ payload }) {
+  yield call(updateOrder, payload);
+  yield put({ type: "UPDATE_ORDER_SUCCESS", payload });
+}
+
+async function updateOrder(id, name, address, phone) {
+  await axios.put(
+    `http://606989d5e1c2a10017544a2f.mockapi.io/api/order/${id}`,
+    {
+      name,
+      phone,
+      address,
+    }
+  );
+}
+
 export default function* rootSaga() {
-  yield all([postsSaga(), postOrderSaga(), getOrderSaga(), removeOrderSaga()]);
+  yield all([
+    postsSaga(),
+    postOrderSaga(),
+    getOrderSaga(),
+    removeOrderSaga(),
+    updateOrderSaga(),
+  ]);
 }

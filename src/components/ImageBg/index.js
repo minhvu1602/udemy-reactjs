@@ -1,6 +1,5 @@
 import React from "react";
 import { useHover } from "../../customHook/useHover";
-import "./_imageBg.scss";
 
 const ImageBG = () => {
   const [hoverRef, isHovered] = useHover();

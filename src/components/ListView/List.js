@@ -1,5 +1,3 @@
-import "../ListView/_List.scss";
-
 const List = ({ users, onDelete, onEdit }) => {
   return (
     <div className="container">

@@ -11,15 +11,15 @@ import { removeCart } from "../../redux/action/cartAction";
 import { useDispatch } from "react-redux";
 import { postOder } from "../../redux/action/order";
 import ImageHOC from "../ImageHOC";
-import "./_FormNewOrder.scss";
 
-const FormNewOrder = ({ setNewFormOrder, total, items }) => {
+const FormNewOrder = ({ setNewFormOrder, total, items, isFromCart }) => {
   const [addOrder, setAddOrder] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  console.log("is", isFromCart);
 
   useEffect(() => {
     const hideLoading = async () => {
