@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
-import { removeOrder } from "../../redux/action/order";
+import { removeOrder, openedDialogUpdate } from "../../redux/action/order";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -17,11 +17,18 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { getListOrder } from "../../redux/action/order";
+import NewOrder from "../FormOrder";
 
-const FomrOrder = () => {
+const ListOrders = () => {
   const [loading, setLoading] = useState(false);
   const [idDelete, setIdDelete] = useState();
-  const listOrder = useSelector((state) => state.listOrder.listOrder);
+  const [idOrder, setIdOrder] = useState();
+  const [total, setTotal] = useState();
+  const listOrder = useSelector((state) => state.order.listOrder);
+  console.log("lít", listOrder);
+  const isOpenDialogUpdate = useSelector(
+    (state) => state.order.isOpenDialogUpdate
+  );
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -40,7 +47,7 @@ const FomrOrder = () => {
   const deleteOrder = async () => {
     setLoading(true);
     dispatch(removeOrder(idDelete));
-    await loadData();
+    // await loadData();
     handleClose();
     setLoading(false);
   };
@@ -56,8 +63,17 @@ const FomrOrder = () => {
     // eslint-disable-next-line
   }, []);
 
+  const handleUpdate = (_id, _total) => {
+    dispatch(openedDialogUpdate({ isOpenDialogUpdate: true }));
+    setIdOrder(_id);
+    setTotal(_total);
+  };
+
   return (
     <div>
+      {isOpenDialogUpdate && (
+        <NewOrder id={idOrder} totalFromOrderList={total} />
+      )}
       <Container maxWidth="lg">
         <h1>Thông tin đơn hàng</h1>
         <Table size="small">
@@ -78,6 +94,14 @@ const FomrOrder = () => {
                   <TableCell>{data.address}</TableCell>
                   <TableCell>{data.phone}</TableCell>
                   <TableCell>{data.total}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleUpdate(data.id, data.total)}
+                    >
+                      Sửa
+                    </Button>
+                  </TableCell>
                   <TableCell>
                     <DeleteIcon onClick={() => handleClickOpen(data.id)} />
                   </TableCell>
@@ -111,4 +135,4 @@ const FomrOrder = () => {
     </div>
   );
 };
-export default FomrOrder;
+export default ListOrders;

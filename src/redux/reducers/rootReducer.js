@@ -6,5 +6,5 @@ import order from "./order";
 export default combineReducers({
   dataProduct: productaction,
   itemsInCart: cart,
-  listOrder: order,
+  order,
 });

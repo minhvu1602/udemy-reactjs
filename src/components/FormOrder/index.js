@@ -9,17 +9,26 @@ import ClearIcon from "@mui/icons-material/Clear";
 import CircularProgress from "@mui/material/CircularProgress";
 import { removeCart } from "../../redux/action/cartAction";
 import { useDispatch } from "react-redux";
-import { postOder } from "../../redux/action/order";
+import {
+  postOder,
+  openedDialogUpdate,
+  updateOrder,
+} from "../../redux/action/order";
 import ImageHOC from "../ImageHOC";
 
-const FormNewOrder = ({ setNewFormOrder, total, items, isFromCart }) => {
+const FormNewOrder = ({
+  setNewFormOrder,
+  total,
+  items,
+  id,
+  totalFromOrderList,
+}) => {
   const [addOrder, setAddOrder] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  console.log("is", isFromCart);
 
   useEffect(() => {
     const hideLoading = async () => {
@@ -34,29 +43,27 @@ const FormNewOrder = ({ setNewFormOrder, total, items, isFromCart }) => {
   };
 
   const closeForm = async () => {
+    if (id) {
+      dispatch(openedDialogUpdate({ isOpenDialogUpdate: false }));
+      return;
+    }
     setNewFormOrder(false, null);
   };
 
   const sendOrder = async () => {
-    let isValid = false;
-    items.forEach(async function (item) {
-      if (item.quantity < item.quantityorder) {
-        alert(
-          `Số lượng ${item.name} không đủ trong kho:\nSố lượng trong kho là: ${item.quantity} \nSố lượng đặt hàng là: ${item.quantityorder}`
-        );
-        isValid = true;
-        return;
-      }
-    });
-    if (isValid) {
-      return;
-    }
     setLoading(true);
-    await dispatch(postOder({ name, address, total, phone, items }));
+    if (id) {
+      dispatch(updateOrder({ id, name, address, phone }));
+      window.location.reload();
+    } else {
+      await dispatch(postOder({ name, address, total, phone, items }));
+    }
     dispatch(removeCart());
-    await closeForm();
+    closeForm();
     alert(
-      "Đặt hàng thành công, vui lòng chờ admin duyệt đơn và phản hồi lại tới bạn."
+      id
+        ? "Cập nhật thông tin thành công"
+        : "Đặt hàng thành công, vui lòng chờ admin duyệt đơn và phản hồi lại tới bạn."
     );
     setLoading(false);
   };
@@ -111,7 +118,7 @@ const FormNewOrder = ({ setNewFormOrder, total, items, isFromCart }) => {
                     margin="normal"
                     required
                     fullWidth
-                    value={total}
+                    value={id ? totalFromOrderList : total}
                     InputProps={{
                       readOnly: true,
                     }}
@@ -136,7 +143,7 @@ const FormNewOrder = ({ setNewFormOrder, total, items, isFromCart }) => {
                   type="submit"
                   onClick={() => sendOrder()}
                 >
-                  Đặt hàng
+                  {id ? "Cập nhật" : "Đặt hàng"}
                 </Button>
               </div>
             </Card>

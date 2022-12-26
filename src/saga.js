@@ -20,6 +20,7 @@ function* postsSaga() {
 }
 
 function* getListOrderSaga() {
+  console.log("3");
   try {
     const data = yield call(
       axios,
@@ -44,14 +45,11 @@ function* postOrderToDb({ payload }) {
   yield put({ type: "POST_ORDER_SUCCESS", payload });
 }
 
-async function addOrder({ name, address, total, phone, items }) {
-  await axios.post("http://606989d5e1c2a10017544a2f.mockapi.io/api/order", {
-    name,
-    address,
-    total,
-    phone,
-    items,
-  });
+async function addOrder(payload) {
+  await axios.post(
+    "http://606989d5e1c2a10017544a2f.mockapi.io/api/order",
+    payload
+  );
 }
 
 export function* removeOrderSaga() {
@@ -78,13 +76,13 @@ function* updateOrderFrDb({ payload }) {
   yield put({ type: "UPDATE_ORDER_SUCCESS", payload });
 }
 
-async function updateOrder(id, name, address, phone) {
+async function updateOrder({ id, name, address, phone }) {
   await axios.put(
     `http://606989d5e1c2a10017544a2f.mockapi.io/api/order/${id}`,
     {
       name,
-      phone,
       address,
+      phone,
     }
   );
 }

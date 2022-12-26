@@ -1,5 +1,6 @@
 const initialState = {
   listOrder: [],
+  isOpenDialogUpdate: false,
 };
 
 const order = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const order = (state = initialState, action) => {
         ...state,
         listOrder: action.payload.data,
       };
+    case "OPEN_DIALOG_UPDATE":
+      return {
+        ...state,
+        isOpenDialogUpdate: action.payload.isOpenDialogUpdate,
+      };
     case "REMOVE_ORDER_SUCCESS": {
       newListOrder = state.listOrder.filter(
         (entry) => entry.id !== action.payload
@@ -32,19 +38,21 @@ const order = (state = initialState, action) => {
         listOrder: newListOrder,
       };
     }
+    // case "UPDATE_ORDER":
+    //   console.log("update", action.payload.id);
+    //   return {
+    //     ...state,
+    //   };
     case "UPDATE_ORDER_SUCCESS": {
-      newListOrder = [...state];
+      newListOrder = state.listOrder;
       const index = newListOrder.findIndex(
         (entry) => entry.id === action.payload.id
       );
       newListOrder[index] = {
         ...newListOrder[index],
-        ...{
-          name: action.payload.name,
-          address: action.payload.address,
-          phone: action.payload.phone,
-        },
+        ...action.payload,
       };
+      console.log("order", newListOrder);
       return {
         ...state,
         listOrder: newListOrder,
