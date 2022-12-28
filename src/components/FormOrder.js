@@ -7,14 +7,14 @@ import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircularProgress from "@mui/material/CircularProgress";
-import { removeCart } from "../../redux/action/cartAction";
+import { removeCart } from "../redux/action/cartAction";
 import { useDispatch } from "react-redux";
 import {
   postOder,
   openedDialogUpdate,
   updateOrder,
-} from "../../redux/action/order";
-import ImageHOC from "../ImageHOC";
+} from "../redux/action/order";
+import ImageHOC from "./ImageHOC/imageHOC";
 
 const FormNewOrder = ({
   setNewFormOrder,
@@ -50,11 +50,27 @@ const FormNewOrder = ({
     setNewFormOrder(false, null);
   };
 
+  const validation = () => {
+    const regexPhone = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    let invalid = true;
+    if (name.length === 0 || name.trim().length === 0) {
+      invalid = false;
+    }
+    if (address.length === 0) {
+      invalid = false;
+    }
+    if (!regexPhone.test(phone)) {
+      invalid = false;
+    }
+    return invalid;
+  };
+
   const sendOrder = async () => {
+    if (!validation()) return;
     setLoading(true);
     if (id) {
       dispatch(updateOrder({ id, name, address, phone }));
-      window.location.reload();
+      // window.location.reload();
     } else {
       await dispatch(postOder({ name, address, total, phone, items }));
     }

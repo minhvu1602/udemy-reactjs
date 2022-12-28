@@ -1,5 +1,5 @@
 const initialState = {
-  listOrder: [],
+  listOrder: null,
   isOpenDialogUpdate: false,
 };
 
@@ -38,24 +38,14 @@ const order = (state = initialState, action) => {
         listOrder: newListOrder,
       };
     }
-    // case "UPDATE_ORDER":
-    //   console.log("update", action.payload.id);
-    //   return {
-    //     ...state,
-    //   };
-    case "UPDATE_ORDER_SUCCESS": {
-      newListOrder = state.listOrder;
-      const index = newListOrder.findIndex(
-        (entry) => entry.id === action.payload.id
-      );
-      newListOrder[index] = {
-        ...newListOrder[index],
-        ...action.payload,
-      };
-      console.log("order", newListOrder);
+    case "UPDATE_ORDER":
       return {
         ...state,
-        listOrder: newListOrder,
+      };
+    case "UPDATE_ORDER_SUCCESS": {
+      return {
+        ...state,
+        listOrder: [action.data],
       };
     }
     default:

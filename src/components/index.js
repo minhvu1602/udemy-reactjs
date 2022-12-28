@@ -8,11 +8,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { addCart } from "../../redux/action/cartAction";
+import { addCart } from "../redux/action/cartAction";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
-import imageHOC from "../ImageHOC";
+import imageHOC from "./ImageHOC/imageHOC";
 
 const useStyles = makeStyles((theme) => ({
   root: {

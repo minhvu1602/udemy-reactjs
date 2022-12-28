@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
-import { removeOrder, openedDialogUpdate } from "../../redux/action/order";
+import { removeOrder, openedDialogUpdate } from "../redux/action/order";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -16,8 +16,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import { getListOrder } from "../../redux/action/order";
-import NewOrder from "../FormOrder";
+import { getListOrder } from "../redux/action/order";
+import NewOrder from "./FormOrder.js";
 
 const ListOrders = () => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,6 @@ const ListOrders = () => {
   const [idOrder, setIdOrder] = useState();
   const [total, setTotal] = useState();
   const listOrder = useSelector((state) => state.order.listOrder);
-  console.log("lít", listOrder);
   const isOpenDialogUpdate = useSelector(
     (state) => state.order.isOpenDialogUpdate
   );
@@ -47,7 +46,6 @@ const ListOrders = () => {
   const deleteOrder = async () => {
     setLoading(true);
     dispatch(removeOrder(idDelete));
-    // await loadData();
     handleClose();
     setLoading(false);
   };

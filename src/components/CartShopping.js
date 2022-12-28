@@ -17,9 +17,9 @@ import {
   removeCart,
   removeItem,
   addQuantity,
-} from "../../redux/action/cartAction";
-import NewOrder from "../FormOrder/index";
-import ImageHOC from "../ImageHOC";
+} from "../redux/action/cartAction";
+import NewOrder from "./FormOrder.js";
+import ImageHOC from "./ImageHOC/imageHOC";
 
 const useStyles = makeStyles((theme) => ({
   heroButtons: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Mycart = () => {
+const MyCart = () => {
   const addedProducts = useSelector((state) => state.itemsInCart.itemsInCart);
   const dispatch = useDispatch();
   const [showNewFormOrder, setShowNewFormOrder] = useState(false);
@@ -199,4 +199,4 @@ const Mycart = () => {
   );
 };
 
-export default ImageHOC(Mycart);
+export default ImageHOC(MyCart);

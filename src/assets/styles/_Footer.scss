@@ -1,0 +1,13 @@
+.footer-wrapper {
+  background: url(../../assets/images/bg1.jpeg);
+  background-size: cover;
+  .contact-wrapper {
+    padding: 0 125px 0;
+    .icon-footer {
+      &:hover {
+        color: green;
+        cursor: pointer;
+      }
+    }
+  }
+}
