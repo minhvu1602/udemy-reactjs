@@ -1,13 +1,14 @@
 import { call, put, takeLatest } from "redux-saga/effects";
+import { ACTION_ORDER } from "../constants";
 import axios from "axios";
 
 export function* updateOrderSaga() {
-  yield takeLatest("UPDATE_ORDER", updateOrderFrDb);
+  yield takeLatest(ACTION_ORDER.updateOrder, updateOrderFrDb);
 }
 
 function* updateOrderFrDb({ payload }) {
   const res = yield call(updateOrder, payload);
-  yield put({ type: "UPDATE_ORDER_SUCCESS", payload, data: res.data });
+  yield put({ type: ACTION_ORDER.updateOrderSuccess, payload, data: res.data });
 }
 
 async function updateOrder({ id, name, address, phone }) {

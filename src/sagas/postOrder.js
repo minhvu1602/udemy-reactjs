@@ -1,13 +1,14 @@
 import { call, put, takeLatest } from "redux-saga/effects";
+import { ACTION_ORDER } from "../constants";
 import axios from "axios";
 
 export function* postOrderSaga() {
-  yield takeLatest("POST_ORDER", postOrderToDb);
+  yield takeLatest(ACTION_ORDER.addNewOrder, postOrderToDb);
 }
 
 function* postOrderToDb({ payload }) {
   yield call(addOrder, payload);
-  yield put({ type: "POST_ORDER_SUCCESS", payload });
+  yield put({ type: ACTION_ORDER.addNewOrderSuccess, payload });
 }
 
 async function addOrder(payload) {

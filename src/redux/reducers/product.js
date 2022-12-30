@@ -1,14 +1,16 @@
+import { ACTION_PRODUCTS } from "../../constants";
+
 const initialState = {
   dataProduct: [],
 };
 
 const productaction = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_LIST_POST":
+    case ACTION_PRODUCTS.getListProducts:
       return {
         ...state,
       };
-    case "GET_LIST_POST_SUCCESS":
+    case ACTION_PRODUCTS.getListProductsSuccess:
       const { data } = action.payload;
       return {
         ...state,

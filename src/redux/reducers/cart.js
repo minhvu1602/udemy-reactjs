@@ -1,22 +1,24 @@
+import { ACTION_CART } from "../../constants";
+
 const initialState = {
   itemsInCart: [],
 };
 
 const cart = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_TO_CART": {
+    case ACTION_CART.addItemToCart: {
       return { ...state, itemsInCart: action.payload };
     }
-    case "REMOVE_TO_CART": {
+    case ACTION_CART.removeCart: {
       return { ...state, itemsInCart: [] };
     }
-    case "REMOVE_SINGLE_ITEM": {
+    case ACTION_CART.removeItem: {
       return { ...state, itemsInCart: action.payload };
     }
-    case "ADD_QUANTITY": {
+    case ACTION_CART.addQuantityItems: {
       return { ...state, itemsInCart: action.payload };
     }
-    case "SUB_QUANTITY": {
+    case ACTION_CART.subQuantityItems: {
       return { ...state, itemsInCart: action.payload };
     }
     default:

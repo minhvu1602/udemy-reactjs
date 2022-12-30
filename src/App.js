@@ -1,14 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
-import ProductList from "./components";
+import ListProducts from "./components/ListProducts";
 import MyCart from "./components/CartShopping";
 import ListOrders from "./components/ListOrders";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getListPost } from "./redux/action/productAction";
-import ImageBG from "./components/ImageBg/ImageBg";
+import Footer from "./components/Footer";
 import "./assets/styles/_all.scss";
+import HomePages from "./components/HomePages";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,11 +28,12 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" exact element={<ImageBG />} />
-          <Route path="/productList" element={<ProductList />} />
+          <Route path="/" exact element={<HomePages />} />
+          <Route path="/productList" element={<ListProducts />} />
           <Route path="/cart" element={<MyCart />} />
           <Route path="/order" element={<ListOrders />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

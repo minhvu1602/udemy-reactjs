@@ -1,3 +1,24 @@
+@import "./variables";
+
 .container {
-  padding: 0 200px;
+  // padding: 24px 125px;
+  position: relative;
+  background: url(../../assets/images/cho-poodle-tini.png) center center
+    no-repeat !important;
+  background-size: cover !important;
+  &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .title-wrap {
+    padding-top: 20px;
+  }
+}
+.list-order-wrap {
+  height: 550px;
 }

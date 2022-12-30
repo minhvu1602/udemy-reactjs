@@ -1,3 +1,5 @@
+import { ACTION_ORDER } from "../../constants";
+
 const initialState = {
   listOrder: null,
   isOpenDialogUpdate: false,
@@ -6,30 +8,22 @@ const initialState = {
 const order = (state = initialState, action) => {
   let newListOrder;
   switch (action.type) {
-    case "POST_ORDER":
-      return {
-        ...state,
-      };
-    case "POST_ORDER_SUCCESS":
+    case ACTION_ORDER.addNewOrderSuccess:
       return {
         ...state,
         listOrder: action.payload.data,
       };
-    case "GET_ORDER":
-      return {
-        ...state,
-      };
-    case "GET_ORDER_SUCCESS":
+    case ACTION_ORDER.getListOrderSuccess:
       return {
         ...state,
         listOrder: action.payload.data,
       };
-    case "OPEN_DIALOG_UPDATE":
+    case ACTION_ORDER.openedDialogUpdate:
       return {
         ...state,
         isOpenDialogUpdate: action.payload.isOpenDialogUpdate,
       };
-    case "REMOVE_ORDER_SUCCESS": {
+    case ACTION_ORDER.removeOrderSuccess: {
       newListOrder = state.listOrder.filter(
         (entry) => entry.id !== action.payload
       );
@@ -38,14 +32,19 @@ const order = (state = initialState, action) => {
         listOrder: newListOrder,
       };
     }
-    case "UPDATE_ORDER":
-      return {
-        ...state,
+    case ACTION_ORDER.updateOrderSuccess: {
+      newListOrder = JSON.stringify(state.listOrder);
+      let newListOrderUpdate = JSON.parse(newListOrder);
+      const index = newListOrderUpdate.findIndex(
+        (entry) => entry.id === action.payload.id
+      );
+      newListOrderUpdate[index] = {
+        ...newListOrderUpdate[index],
+        ...action.payload,
       };
-    case "UPDATE_ORDER_SUCCESS": {
       return {
         ...state,
-        listOrder: [action.data],
+        listOrder: newListOrderUpdate,
       };
     }
     default:

@@ -1,0 +1,155 @@
+/* Break-point
+--------------------------*/
+$sm: 576px !default;
+$md: 768px !default;
+$lg: 992px !default;
+$xl: 1200px !default;
+
+$breakpoints: (
+  "xs": (
+    max-width: $sm - 1,
+  ),
+  "sm": (
+    min-width: $sm,
+  ),
+  "md": (
+    min-width: $md,
+  ),
+  "lg": (
+    min-width: $lg,
+  ),
+  "xl": (
+    min-width: $xl,
+  ),
+);
+
+// Color system
+$red: #DC3545 !default;
+$red-hover: #eb5757 !default;
+$green: #39ac37 !default;
+$blue: #00aae7 !default;
+$gray: #CCCCCC !default;
+$gray-darker: #c1c7c9 !default;
+$gray-lighter: #666666 !default;
+$black: #171717 !default;
+$white: #fff !default;
+$colors: (
+  red: $red,
+  gray: $gray,
+  gray-darker: $gray-darker,
+  gray-lighter: $gray-lighter,
+  black: $black,
+  white: $white,
+  green: $green,
+);
+
+//Global Color Control
+$primary: $green;
+$secondary: $blue;
+$danger: $red;
+$bg-color: $black;
+
+@each $color-var, $color in $colors {
+  //background
+  .bg-#{$color-var} {
+    background-color: $color;
+  }
+  // color text
+  .#{$color-var} {
+    color: $color;
+  }
+}
+
+/* Grid */
+// Grid breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+) !default;
+
+// Grid containers
+$container-max-widths: (
+  sm: 570px,
+  md: 750px,
+  lg: 990px,
+  xl: 1170px,
+) !default;
+
+//Border color
+$border-color: #c5c5c5;
+$border-color-light: #E0E0E0;
+
+// Typography
+$font-md: 16px !default; // Assumes the browser default, typically `16px`
+$font-sm: 14px !default;
+$font-xs: 12px !default;
+
+//Spacing
+$spacing: 8px;
+$spacing-2: $spacing * 2;
+$spacing-3: $spacing * 3;
+$spacing-4: $spacing * 4;
+$spacings: (
+  x0: 0,
+  x05: 4px,
+  x1: 8px,
+  x2: 16px,
+  x25: 20px,
+  x3: 24px,
+  x4: 32px,
+  x5: 48px,
+);
+
+@each $spacing-var, $space in $spacings {
+  //margin
+  .mb#{$spacing-var} {
+    margin-bottom: $space;
+  }
+  .mt#{$spacing-var} {
+    margin-top: $space;
+  }
+  .ml#{$spacing-var} {
+    margin-left: $space;
+  }
+  .mr#{$spacing-var} {
+    margin-right: $space;
+  }
+  .m#{$spacing-var} {
+    margin: $space;
+  }
+  .mtb#{$spacing-var} {
+    margin-top: $space;
+    margin-bottom: $space;
+  }
+  .mlr#{$spacing-var} {
+    margin-left: $space;
+    margin-right: $space;
+  }
+  //padding
+  .pb#{$spacing-var} {
+    padding-bottom: $space;
+  }
+  .pt#{$spacing-var} {
+    padding-top: $space;
+  }
+  .pl#{$spacing-var} {
+    padding-left: $space;
+  }
+  .pr#{$spacing-var} {
+    padding-right: $space;
+  }
+  .p#{$spacing-var} {
+    padding: $space;
+  }
+  .ptb#{$spacing-var} {
+    padding-top: $space;
+    padding-bottom: $space;
+  }
+  .plr#{$spacing-var} {
+    padding-left: $space;
+    padding-right: $space;
+  }
+}

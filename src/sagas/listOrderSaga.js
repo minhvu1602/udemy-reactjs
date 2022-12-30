@@ -1,5 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getListOrderSuccess } from "../redux/action/order";
+import { getListOrderSuccess } from "../redux/action/orderAction";
+import { ACTION_ORDER } from "../constants";
 import axios from "axios";
 
 function* getListOrderSaga() {
@@ -15,5 +16,5 @@ function* getListOrderSaga() {
 }
 
 export function* getOrderSaga() {
-  yield takeEvery("GET_ORDER", getListOrderSaga);
+  yield takeEvery(ACTION_ORDER.getListOrder, getListOrderSaga);
 }

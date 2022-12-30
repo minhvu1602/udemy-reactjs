@@ -1,11 +1,17 @@
+@import "./variables";
+
 .footer-wrapper {
-  background: url(../../assets/images/bg1.jpeg);
-  background-size: cover;
+  background-color: gray;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  text-align: center;
   .contact-wrapper {
     padding: 0 125px 0;
     .icon-footer {
       &:hover {
-        color: green;
+        color: $green;
         cursor: pointer;
       }
     }

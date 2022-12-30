@@ -1,40 +1,43 @@
+import { ACTION_ORDER } from "../../constants";
+
 export const postOder = (payload) => {
   return {
-    type: "POST_ORDER",
+    type: ACTION_ORDER.addNewOrder,
     payload: payload,
   };
 };
 
-export const getListOrder = () => {
+export const getListOrder = (payload) => {
   return {
-    type: "GET_ORDER",
+    type: ACTION_ORDER.getListOrder,
+    payload,
   };
 };
 
 export const getListOrderSuccess = (payload) => {
   return {
-    type: "GET_ORDER_SUCCESS",
+    type: ACTION_ORDER.getListOrderSuccess,
     payload,
   };
 };
 
 export const removeOrder = (payload) => {
   return {
-    type: "REMOVE_ORDER",
+    type: ACTION_ORDER.removeOrder,
     payload,
   };
 };
 
 export const updateOrder = (payload) => {
   return {
-    type: "UPDATE_ORDER",
+    type: ACTION_ORDER.updateOrder,
     payload,
   };
 };
 
 export const openedDialogUpdate = (payload) => {
   return {
-    type: "OPEN_DIALOG_UPDATE",
+    type: ACTION_ORDER.openedDialogUpdate,
     payload,
   };
 };

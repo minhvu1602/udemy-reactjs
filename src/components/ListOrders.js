@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
-import { removeOrder, openedDialogUpdate } from "../redux/action/order";
+import { removeOrder, openedDialogUpdate } from "../redux/action/orderAction";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -16,7 +16,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import { getListOrder } from "../redux/action/order";
+import { getListOrder } from "../redux/action/orderAction";
 import NewOrder from "./FormOrder.js";
 
 const ListOrders = () => {
@@ -68,7 +68,7 @@ const ListOrders = () => {
   };
 
   return (
-    <div>
+    <div className="list-order-wrap">
       {isOpenDialogUpdate && (
         <NewOrder id={idOrder} totalFromOrderList={total} />
       )}

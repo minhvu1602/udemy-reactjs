@@ -1,14 +1,14 @@
 import { call, put, takeLatest } from "redux-saga/effects";
+import { ACTION_ORDER } from "../constants";
 import axios from "axios";
 
 export function* removeOrderSaga() {
-  yield takeLatest("REMOVE_ORDER", removeOrderFrDb);
+  yield takeLatest(ACTION_ORDER.removeOrder, removeOrderFrDb);
 }
 
 function* removeOrderFrDb({ payload }) {
   yield call(removeOrder, payload);
-  debugger;
-  yield put({ type: "REMOVE_ORDER_SUCCESS", payload });
+  yield put({ type: ACTION_ORDER.removeOrderSuccess, payload });
 }
 
 async function removeOrder(id) {

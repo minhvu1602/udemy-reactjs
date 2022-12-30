@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductList = () => {
+const ListProducts = () => {
   const classes = useStyles();
   const dipatch = useDispatch();
   const products = useSelector((state) => state.dataProduct.dataProduct);
@@ -118,4 +118,4 @@ const ProductList = () => {
   );
 };
 
-export default imageHOC(ProductList);
+export default imageHOC(ListProducts);

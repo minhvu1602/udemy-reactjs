@@ -13,7 +13,7 @@ import {
   postOder,
   openedDialogUpdate,
   updateOrder,
-} from "../redux/action/order";
+} from "../redux/action/orderAction";
 import ImageHOC from "./ImageHOC/imageHOC";
 
 const FormNewOrder = ({

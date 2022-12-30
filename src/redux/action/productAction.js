@@ -1,13 +1,14 @@
-export const getListPost = (payload) => {
+import { ACTION_PRODUCTS } from "../../constants";
+
+export const getListPost = () => {
   return {
-    type: "GET_LIST_POST",
-    payload,
+    type: ACTION_PRODUCTS.getListProducts,
   };
 };
 
 export const getListPostSuccess = (payload) => {
   return {
-    type: "GET_LIST_POST_SUCCESS",
+    type: ACTION_PRODUCTS.getListProductsSuccess,
     payload,
   };
 };

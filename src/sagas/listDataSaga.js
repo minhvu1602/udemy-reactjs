@@ -1,5 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { getListPostSuccess } from "../redux/action/productAction";
+import { ACTION_PRODUCTS } from "../constants";
 import axios from "axios";
 
 function* getListPostSaga() {
@@ -15,5 +16,5 @@ function* getListPostSaga() {
 }
 
 export function* postsSaga() {
-  yield takeEvery("GET_LIST_POST", getListPostSaga);
+  yield takeEvery(ACTION_PRODUCTS.getListProducts, getListPostSaga);
 }

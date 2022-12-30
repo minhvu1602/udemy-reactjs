@@ -1,27 +1,29 @@
+import { ACTION_CART } from "../../constants";
+
 export const addCart = (payload) => ({
-  type: "ADD_TO_CART",
+  type: ACTION_CART.addItemToCart,
   payload: payload,
 });
 
 export const removeCart = () => {
   return {
-    type: "REMOVE_TO_CART",
+    type: ACTION_CART.removeCart,
   };
 };
 
 export const addQuantity = (payload) => ({
-  type: "ADD_QUANTITY",
+  type: ACTION_CART.addQuantityItems,
   payload: payload,
 });
 
 export const subQuantity = (payload) => ({
-  type: "SUB_QUANTITY",
+  type: ACTION_CART.subQuantityItems,
   payload: payload,
 });
 
 export const removeItem = (payload) => {
   return {
-    type: "REMOVE_SINGLE_ITEM",
+    type: ACTION_CART.removeItem,
     payload: payload,
   };
 };
